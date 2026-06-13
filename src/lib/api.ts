@@ -29,6 +29,21 @@ export type NewNoteData = {
   categoryId: string;
 };
 
+export type RegisterRequest = {
+  email: string;
+  password: string;
+  userName: string;
+};
+
+export type User = {
+  id: string;
+  email: string;
+  userName?: string;
+  photoUrl?: string;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
 //axios.defaults.baseURL = 'https://next-v1-notes-api.goit.study';
 // axios.defaults.baseURL = 'http://localhost:3000/api';
 const nextServer = axios.create({
@@ -55,5 +70,10 @@ export const getCategories = async () => {
 
 export const createNote = async (data: NewNoteData) => {
   const res = await nextServer.post<Note>('/notes', data);
+  return res.data;
+};
+
+export const register = async (data: RegisterRequest) => {
+  const res = await nextServer.post<User>('/auth/register', data);
   return res.data;
 };
