@@ -3,6 +3,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useParams, useRouter } from 'next/navigation';
 import { getSingleNote } from '@/src/lib/api';
+import css from './NoteDetailsClient.module.css';
 
 const NoteDetailsClient = () => {
   const { id } = useParams<{ id: string }>();
@@ -34,11 +35,11 @@ const NoteDetailsClient = () => {
     : `Created at: ${note.createdAt}`;
 
   return (
-    <div>
+    <div className={css.container}>
       <button onClick={handleGoBack}>Back</button>
-      <h2>{note.title}</h2>
-      <p>{note.content}</p>
-      <p>{formattedDate}</p>
+      <h2 className={css.header}>{note.title}</h2>
+      <p className={css.content}>{note.content}</p>
+      <p className={css.date}>{formattedDate}</p>
     </div>
   );
 };

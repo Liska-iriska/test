@@ -15,18 +15,45 @@ export type NoteListResponse = {
   total: number;
 };
 
-axios.defaults.baseURL = 'https://next-v1-notes-api.goit.study';
+export type Category = {
+  id: string;
+  name: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+};
 
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+export type NewNoteData = {
+  title: string;
+  content: string;
+  categoryId: string;
+};
+
+//axios.defaults.baseURL = 'https://next-v1-notes-api.goit.study';
+// axios.defaults.baseURL = 'http://localhost:3000/api';
+const nextServer = axios.create({
+  baseURL: 'http://localhost:3000/api',
+  withCredentials: true, // дозволяє axios працювати з cookie
+});
 
 export const getNotes = async (categoryId?: string) => {
-  const res = await axios.get<NoteListResponse>('/notes', {
+  const res = await nextServer.get<NoteListResponse>('/notes', {
     params: { categoryId },
   });
   return res.data;
 };
 
 export const getSingleNote = async (id: string) => {
-  const res = await axios.get<Note>(`/notes/${id}`);
+  const res = await nextServer.get<Note>(`/notes/${id}`);
+  return res.data;
+};
+
+export const getCategories = async () => {
+  const res = await nextServer<Category[]>('/categories');
+  return res.data;
+};
+
+export const createNote = async (data: NewNoteData) => {
+  const res = await nextServer.post<Note>('/notes', data);
   return res.data;
 };
