@@ -1,4 +1,5 @@
 // app/profile/edit/page.tsx
+import css from './Profile.module.css';
 
 import { Metadata } from 'next';
 

@@ -1,4 +1,4 @@
-import { Note } from '@/src/lib/api';
+import { Note } from '@/src/lib/api/clientApi';
 import NoteItem from '../NoteItem/NoteItem';
 import css from './NoteList.module.css';
 

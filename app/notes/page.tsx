@@ -28,7 +28,7 @@
 // app/notes/page.tsx
 
 import NoteList from '@/components/NoteList/NoteList';
-import { getNotes } from '@/src/lib/api';
+import { getNotes } from '@/src/lib/api/clientApi';
 
 const Notes = async () => {
   const response = await getNotes();

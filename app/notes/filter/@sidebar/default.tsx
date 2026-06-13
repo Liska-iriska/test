@@ -1,7 +1,7 @@
 // app/(public routes)/notes/filter/@sidebar/default.tsx
 
 import Link from 'next/link';
-import { getCategories } from '@/src/lib/api';
+import { getCategories } from '@/src/lib/api/clientApi';
 import css from './SidebarNotes.module.css';
 
 const NotesSidebar = async () => {

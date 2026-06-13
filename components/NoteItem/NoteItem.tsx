@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Note } from '@/src/lib/api';
+import { Note } from '@/src/lib/api/clientApi';
 import css from '../NoteList/NoteList.module.css';
 
 type Props = {

@@ -1,7 +1,7 @@
 // app/lib/stores/noteStore.ts
 import { persist } from 'zustand/middleware';
 import { create } from 'zustand';
-import { NewNoteData } from '../api';
+import { NewNoteData } from '../api/api';
 
 type NoteDraftStore = {
   draft: NewNoteData;

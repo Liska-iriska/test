@@ -4,12 +4,16 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { register, RegisterRequest } from '@/src/lib/api';
+import { register, RegisterRequest } from '@/src/lib/api/clientApi';
 import { ApiError } from '@/app/api/api';
+import { useAuthStore } from '@/src/lib/stores/authStore';
+import css from './SignUpPage.module.css';
 
 const SignUp = () => {
   const router = useRouter();
   const [error, setError] = useState('');
+
+  const setUser = useAuthStore(state => state.setUser);
 
   const handleSubmit = async (formData: FormData) => {
     try {
@@ -19,6 +23,7 @@ const SignUp = () => {
       const res = await register(formValues);
       // Виконуємо редірект або відображаємо помилку
       if (res) {
+        setUser(res);
         router.push('/profile');
       } else {
         setError('Invalid email or password');
@@ -33,25 +38,27 @@ const SignUp = () => {
   };
 
   return (
-    <>
-      <h1>Sign up</h1>
-      <form action={handleSubmit}>
-        <label>
+    <section className={css.mainContent}>
+      <form className={css.form} action={handleSubmit}>
+        <h1 className={css.formTitle}>Sign up</h1>
+        <label className={css.formGroup}>
           Username
-          <input type="text" name="userName" required />
+          <input className={css.input} type="text" name="userName" required />
         </label>
-        <label>
+        <label className={css.formGroup}>
           Email
-          <input type="email" name="email" required />
+          <input className={css.input} type="email" name="email" required />
         </label>
-        <label>
+        <label className={css.formGroup}>
           Password
-          <input type="password" name="password" required />
+          <input className={css.input} type="password" name="password" required />
         </label>
-        <button type="submit">Register</button>
+        <button className={css.submitButton} type="submit">
+          Register
+        </button>
       </form>
       {error && <p>{error}</p>}
-    </>
+    </section>
   );
 };
 

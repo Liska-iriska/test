@@ -1,6 +1,6 @@
 // app/notes/filter/[...slug]/page.tsx
 
-import { getNotes } from '@/src/lib/api';
+import { getNotes } from '@/src/lib/api/clientApi';
 import NoteList from '@/components/NoteList/NoteList';
 
 type Props = {

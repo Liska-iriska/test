@@ -4,7 +4,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
-import { Category, createNote, NewNoteData } from '@/src/lib/api';
+import { Category, createNote, NewNoteData } from '@/src/lib/api/clientApi';
 import css from './NoteForm.module.css';
 import { useNoteDraftStore } from '@/src/lib/stores/noteStore';
 
